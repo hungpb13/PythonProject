@@ -1,21 +1,11 @@
-# Math functions
+# Exercise: Calc Circumference of a Circle
+
 import math
 
-x, y, z = 3.14, -4, 5
+pi = math.pi
 
-y = abs(y)
-# result = round(x, 1)
-result = pow(y, z)
-max_of = max(x, y, z)
-min_of = min(x, y, z)
+radius = float(input("Enter the radius of a circle: "))
 
-print(result)
-print(max_of)
-print(min_of)
+circumference = 2 * pi * radius
 
-# Math module
-print(math.pi)
-print(math.e)
-print(math.sqrt(y))
-print(math.ceil(x))
-print(math.floor(x))
+print(f"The circumference is {round(circumference, 2)} cm")
