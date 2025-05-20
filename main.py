@@ -1,10 +1,27 @@
-# Exercise: Calc The Hypotenuse of a Right Angled Triangle
+# if = do some code IF condition is True
+# else = do something else
 
-import math
+name = input("Enter your name: ")
 
-a = float(input("Enter Side A: "))
-b = float(input("Enter Side B: "))
+if name != "":
+    print(f"Hello, {name}!")
+else:
+    print("You did not enter your name!")
 
-c = math.sqrt(pow(a, 2) * pow(b, 2))
+age = int(input("Enter your age: "))
 
-print(f"Side C = {c}")
+if age > 100:
+    print("You are too old to sign up!")
+elif age >= 18:
+    print("You are signed up!")
+elif age < 0:
+    print("You haven't been born yet!")
+else:
+    print("You must be 18+ to sign up!")
+
+response = input("Would you like food? (Y/N): ").upper()
+
+if response == "Y":
+    print("Have some food!")
+else:
+    print("No food for you!")
