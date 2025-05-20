@@ -1,30 +1,16 @@
-# Exercise: Calc Compound Interest
+# For loop = execute a block of code a fixed number of times
+# Iterate over a range, string, sequence, etc.
 
-principle = 0
-rate = 0
-time = 0
+for i in range(1, 11):
+    print(i, end=" ")
+print("\nReversed range")
+for i in reversed(range(1, 11)):
+    print(i)
+print("HAPPY NEW YEAR!")
 
-while True:
-    principle = float(input("Enter the principle amount: "))
-    if principle < 0:
-        print("Principle can't be less than or equal to zero")
-    else:
-        break
+credit_card = "1234-5678-9012-3456"
 
-while True:
-    rate = float(input("Enter the interest rate: "))
-    if rate < 0:
-        print("Interest rate can't be less than or equal to zero")
-    else:
-        break
-
-while True:
-    time = float(input("Enter the time in years: "))
-    if time < 0:
-        print("Time can't be less than or equal to zero")
-    else:
-        break
-
-total = principle * pow((1 + rate / 100), time)
-
-print(f"Balance after {time:.0f} year(s): ${total:.2f}")
+for number in credit_card:
+    if number == "-":
+        continue
+    print(number, end=" ")
