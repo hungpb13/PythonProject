@@ -1,21 +1,32 @@
-# Exercise: Basic Calculator
+# Logical operators = evaluate multiple conditions
+# or = at least one condition must be True
+# and = all conditions must be True
+# not = inverts the condition (not True, not False)
 
-operator = input("Enter a operator (+ - * /): ")
+temp = 26
+is_raining = False
+is_sunny = False
 
-first_number = float(input("Enter the 1st number: "))
-second_number = float(input("Enter the 2nd number: "))
-
-result = 0
-
-if operator == "+":
-    result = first_number + second_number
-elif operator == "-":
-    result = first_number - second_number
-elif operator == "*":
-    result = first_number * second_number
-elif operator == "/":
-    result = first_number / second_number
+if temp > 35 or temp < 0 or is_raining:
+    print("The outdoor event is cancelled!")
 else:
-    print(f"{operator} is not a valid operator")
+    print("The outdoor event is still scheduled!")
 
-print(f"Result = {round(result, 2)}")
+if temp > 28 and is_sunny:
+    print("It is HOT outside!")
+    print("It is SUNNY!")
+elif temp <= 0 and is_sunny:
+    print("It is COLD outside!")
+    print("It is SUNNY!")
+elif 0 < temp < 28 and is_sunny:
+    print("It is WARM outside!")
+    print("It is SUNNY!")
+elif temp > 28 and not is_sunny:
+    print("It is HOT outside!")
+    print("It is CLOUDY!")
+elif temp <= 0 and not is_sunny:
+    print("It is COLD outside!")
+    print("It is CLOUDY!")
+elif 0 < temp < 28 and not is_sunny:
+    print("It is WARM outside!")
+    print("It is CLOUDY!")
