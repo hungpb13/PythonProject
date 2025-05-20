@@ -1,32 +1,24 @@
-# Logical operators = evaluate multiple conditions
-# or = at least one condition must be True
-# and = all conditions must be True
-# not = inverts the condition (not True, not False)
+# Conditional expression = an oneline shortcut for the if-else statement (ternary operator)
+# Print or assign one of the two values based on a condition
+# Formula: value_if_true if condition else value_if_false
 
-temp = 26
-is_raining = False
-is_sunny = False
+number = -5
+a = 3
+b = 4
+age = 18
+temperature = 30
+user_role = "admin"
 
-if temp > 35 or temp < 0 or is_raining:
-    print("The outdoor event is cancelled!")
-else:
-    print("The outdoor event is still scheduled!")
+print("Positive" if number > 0 else "Negative")
 
-if temp > 28 and is_sunny:
-    print("It is HOT outside!")
-    print("It is SUNNY!")
-elif temp <= 0 and is_sunny:
-    print("It is COLD outside!")
-    print("It is SUNNY!")
-elif 0 < temp < 28 and is_sunny:
-    print("It is WARM outside!")
-    print("It is SUNNY!")
-elif temp > 28 and not is_sunny:
-    print("It is HOT outside!")
-    print("It is CLOUDY!")
-elif temp <= 0 and not is_sunny:
-    print("It is COLD outside!")
-    print("It is CLOUDY!")
-elif 0 < temp < 28 and not is_sunny:
-    print("It is WARM outside!")
-    print("It is CLOUDY!")
+even_or_odd = "Even" if number % 2 == 0 else "Odd"
+print(even_or_odd)
+
+print(f"Max = {a if a > b else b}")
+print(f"Min = {a if a < b else b}")
+
+print(f"Status = {"Adult" if age >= 18 else "Child"}")
+
+print(f"Weather = {"Hot" if temperature > 25 else "Cold"}")
+
+print(f"Access level = {"Full" if user_role == "admin" else "Limited"}")
