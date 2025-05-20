@@ -1,10 +1,30 @@
-# Exercise 2: Shopping Cart Program
+# Arithmetic Operators
+from math import remainder
 
-item = input("What item would you like to buy?: ")
-price = float(input("What is the price?: "))
-quantity = int(input("How many would you like?: "))
+friends = 10
 
-total = price * quantity
+# Addition
+friends = friends + 2
+friends += 2
 
-print(f"You have bought {quantity} x {item}(s)")
-print(f"Your total is ${total}")
+# Subtraction
+friends = friends - 2
+friends -= 2
+
+# Multiplication
+friends = friends * 2
+friends *= 2
+
+# Division
+friends = friends / 2
+friends /= 2
+
+# Exponentiation
+friends = friends ** 2
+friends **= 2
+
+# Modulus
+remainder = friends % 3
+
+print(f"Friends = {friends}")
+print(f"Remainder = {remainder}")
