@@ -1,19 +1,21 @@
-# String indexing = accessing elements of a sequence using []
-# [start : end : step]
+# Format specifiers = {value:flags}
+# Format a value based on what flags are inserted
 
-credit_number = "1234-5678-9012-3456"
+# :.(number)f = round to that many decimal places
+# :(number) = allocate that many spaces
+# :03 = allocate and zero pad that many spaces
+# :< = left justify
+# :> = right justify
+# :^ = center justify
+# :+ = use a plus sign to indicate positive value
+# := = place sign to leftmost position
+# :  = insert a space before positive numbers
+# :, = comma separator
 
-print(credit_number[0])
-print(credit_number[0:4])
-print(credit_number[:4])
-print(credit_number[5:9])
-print(credit_number[5:])
+price1 = 3.123456
+price2 = -43269245.34
+price3 = 12.34
 
-print(credit_number[::2])
-
-print(credit_number[-1])
-
-last_4_digits = credit_number[-4:]
-print(f"XXXX-XXXX-XXXX-{last_4_digits}")
-
-print(f"Reversed create number: {credit_number[::-1]}")
+print(f"Price 1 = {price1:+.2f}")
+print(f"Price 2 = {price2:+,}")
+print(f"Price 3 = {price3:+010.0f}")
