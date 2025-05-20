@@ -1,11 +1,10 @@
-# Exercise: Calc Area of a Circle
+# Exercise: Calc The Hypotenuse of a Right Angled Triangle
 
 import math
 
-pi = math.pi
+a = float(input("Enter Side A: "))
+b = float(input("Enter Side B: "))
 
-radius = float(input("Enter the radius of a circle: "))
+c = math.sqrt(pow(a, 2) * pow(b, 2))
 
-area = pi * pow(radius, 2)
-
-print(f"The area of the circle is {round(area, 2)} cm²")
+print(f"Side C = {c}")
