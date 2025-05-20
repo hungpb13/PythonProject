@@ -1,24 +1,22 @@
-# Conditional expression = an oneline shortcut for the if-else statement (ternary operator)
-# Print or assign one of the two values based on a condition
-# Formula: value_if_true if condition else value_if_false
+# String Methods
 
-number = -5
-a = 3
-b = 4
-age = 18
-temperature = 30
-user_role = "admin"
+name = "bro Code"
+number = "2"
+phone_number = "1-234-567-8901"
 
-print("Positive" if number > 0 else "Negative")
+print(f"Length: {len(name)}")
+print(f"First index of: {name.find(" ")}") # return -1 if not found
+print(f"Last index of: {name.rfind("o")}")
+print(f"Capitalize the first character: {name.capitalize()}")
+print(f"Capitalize each word: {name.title()}")
+print(f"Uppercase: {name.upper()}")
+print(f"Lowercase: {name.lower()}")
+print(f"Is digit: {number.isdigit()}")
+print(f"Is alpha: {"name".isalpha()}")
+print(f"Is alpha and number: {"Bro123".isalnum()}")
+print(f"Count: {phone_number.count("-")}")
+print(f"Replace: {phone_number.replace("-", " ")}")
 
-even_or_odd = "Even" if number % 2 == 0 else "Odd"
-print(even_or_odd)
-
-print(f"Max = {a if a > b else b}")
-print(f"Min = {a if a < b else b}")
-
-print(f"Status = {"Adult" if age >= 18 else "Child"}")
-
-print(f"Weather = {"Hot" if temperature > 25 else "Cold"}")
-
-print(f"Access level = {"Full" if user_role == "admin" else "Limited"}")
+split_numbers = phone_number.split("-")
+print(f"Numbers: {split_numbers}")
+print(f"Join numbers: {"-".join(split_numbers)}")
