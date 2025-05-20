@@ -1,22 +1,15 @@
-# String Methods
+# Exercise: Validate Username Input
+# No more than 12 characters
+# Not contain spaces
+# Not contain digit
 
-name = "bro Code"
-number = "2"
-phone_number = "1-234-567-8901"
+username = input("Enter username: ")
 
-print(f"Length: {len(name)}")
-print(f"First index of: {name.find(" ")}") # return -1 if not found
-print(f"Last index of: {name.rfind("o")}")
-print(f"Capitalize the first character: {name.capitalize()}")
-print(f"Capitalize each word: {name.title()}")
-print(f"Uppercase: {name.upper()}")
-print(f"Lowercase: {name.lower()}")
-print(f"Is digit: {number.isdigit()}")
-print(f"Is alpha: {"name".isalpha()}")
-print(f"Is alpha and number: {"Bro123".isalnum()}")
-print(f"Count: {phone_number.count("-")}")
-print(f"Replace: {phone_number.replace("-", " ")}")
-
-split_numbers = phone_number.split("-")
-print(f"Numbers: {split_numbers}")
-print(f"Join numbers: {"-".join(split_numbers)}")
+if len(username) > 12:
+    print("Username cannot be more than 12 characters!")
+elif not username.find(" ") == -1:
+    print("Username cannot contain spaces!")
+elif not username.isalpha():
+    print("Username cannot contain numbers!")
+else:
+    print(f"Welcome, {username}!")
