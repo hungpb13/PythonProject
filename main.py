@@ -1,10 +1,10 @@
-# input() = a function that prompts user to enter data
-# Return the entered data as a string
+# Exercise 1: Rectangle Area Calc
+length, width = input("Enter length and width seperated by space: ").split()
 
-name = input("What is your name?: ")
+length = float(length)
+width = float(width)
 
-age = int(input("How old are you?: "))
-age += 1
+area = length * width
 
-print(f"Hello {name}!")
-print(f"You are {age} years old")
+# Super script Alt + 0178 = ²
+print(f"The area is {area} m²")
