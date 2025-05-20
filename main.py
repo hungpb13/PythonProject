@@ -1,4 +1,4 @@
-# Exercise: Calc Circumference of a Circle
+# Exercise: Calc Area of a Circle
 
 import math
 
@@ -6,6 +6,6 @@ pi = math.pi
 
 radius = float(input("Enter the radius of a circle: "))
 
-circumference = 2 * pi * radius
+area = pi * pow(radius, 2)
 
-print(f"The circumference is {round(circumference, 2)} cm")
+print(f"The area of the circle is {round(area, 2)} cm²")
