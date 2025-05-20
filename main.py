@@ -1,21 +1,29 @@
-# Format specifiers = {value:flags}
-# Format a value based on what flags are inserted
+# While loop = execute some code WHILE condition remains True
 
-# :.(number)f = round to that many decimal places
-# :(number) = allocate that many spaces
-# :03 = allocate and zero pad that many spaces
-# :< = left justify
-# :> = right justify
-# :^ = center justify
-# :+ = use a plus sign to indicate positive value
-# := = place sign to leftmost position
-# :  = insert a space before positive numbers
-# :, = comma separator
+name = input("Enter your name: ")
 
-price1 = 3.123456
-price2 = -43269245.34
-price3 = 12.34
+while name == "":
+    print("You did not enter your name!")
+    name = input("Please, enter your name: ")
 
-print(f"Price 1 = {price1:+.2f}")
-print(f"Price 2 = {price2:+,}")
-print(f"Price 3 = {price3:+010.0f}")
+age = int(input("Enter your age: "))
+
+while age < 0:
+    print("Age can't be negative!")
+    age = int(input("Please, enter a valid age: "))
+
+food = input("Enter a food you like (press Q to quit): ")
+
+while not food.upper() == "Q":
+    print(f"You like {food}")
+    food = input("Enter another food you like (press Q to quit): ")
+
+number = int(input("Enter a number between 1 and 10: "))
+
+while number < 1 or number > 10:
+    print(f"{number} is not valid")
+    number = int(input("Please, enter a number between 1 and 10: "))
+
+print("Hello " + name)
+print(f"Next year, you will be {age + 1}")
+print(f"Your number is {number}")
