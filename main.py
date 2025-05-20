@@ -1,10 +1,10 @@
-# Exercise 1: Rectangle Area Calc
-length, width = input("Enter length and width seperated by space: ").split()
+# Exercise 2: Shopping Cart Program
 
-length = float(length)
-width = float(width)
+item = input("What item would you like to buy?: ")
+price = float(input("What is the price?: "))
+quantity = int(input("How many would you like?: "))
 
-area = length * width
+total = price * quantity
 
-# Super script Alt + 0178 = ²
-print(f"The area is {area} m²")
+print(f"You have bought {quantity} x {item}(s)")
+print(f"Your total is ${total}")
