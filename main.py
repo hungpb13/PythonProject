@@ -1,30 +1,21 @@
-# Arithmetic Operators
-from math import remainder
+# Math functions
+import math
 
-friends = 10
+x, y, z = 3.14, -4, 5
 
-# Addition
-friends = friends + 2
-friends += 2
+y = abs(y)
+# result = round(x, 1)
+result = pow(y, z)
+max_of = max(x, y, z)
+min_of = min(x, y, z)
 
-# Subtraction
-friends = friends - 2
-friends -= 2
+print(result)
+print(max_of)
+print(min_of)
 
-# Multiplication
-friends = friends * 2
-friends *= 2
-
-# Division
-friends = friends / 2
-friends /= 2
-
-# Exponentiation
-friends = friends ** 2
-friends **= 2
-
-# Modulus
-remainder = friends % 3
-
-print(f"Friends = {friends}")
-print(f"Remainder = {remainder}")
+# Math module
+print(math.pi)
+print(math.e)
+print(math.sqrt(y))
+print(math.ceil(x))
+print(math.floor(x))
