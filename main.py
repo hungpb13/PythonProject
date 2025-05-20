@@ -1,29 +1,30 @@
-# While loop = execute some code WHILE condition remains True
+# Exercise: Calc Compound Interest
 
-name = input("Enter your name: ")
+principle = 0
+rate = 0
+time = 0
 
-while name == "":
-    print("You did not enter your name!")
-    name = input("Please, enter your name: ")
+while True:
+    principle = float(input("Enter the principle amount: "))
+    if principle < 0:
+        print("Principle can't be less than or equal to zero")
+    else:
+        break
 
-age = int(input("Enter your age: "))
+while True:
+    rate = float(input("Enter the interest rate: "))
+    if rate < 0:
+        print("Interest rate can't be less than or equal to zero")
+    else:
+        break
 
-while age < 0:
-    print("Age can't be negative!")
-    age = int(input("Please, enter a valid age: "))
+while True:
+    time = float(input("Enter the time in years: "))
+    if time < 0:
+        print("Time can't be less than or equal to zero")
+    else:
+        break
 
-food = input("Enter a food you like (press Q to quit): ")
+total = principle * pow((1 + rate / 100), time)
 
-while not food.upper() == "Q":
-    print(f"You like {food}")
-    food = input("Enter another food you like (press Q to quit): ")
-
-number = int(input("Enter a number between 1 and 10: "))
-
-while number < 1 or number > 10:
-    print(f"{number} is not valid")
-    number = int(input("Please, enter a number between 1 and 10: "))
-
-print("Hello " + name)
-print(f"Next year, you will be {age + 1}")
-print(f"Your number is {number}")
+print(f"Balance after {time:.0f} year(s): ${total:.2f}")
