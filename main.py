@@ -1,27 +1,21 @@
-# if = do some code IF condition is True
-# else = do something else
+# Exercise: Basic Calculator
 
-name = input("Enter your name: ")
+operator = input("Enter a operator (+ - * /): ")
 
-if name != "":
-    print(f"Hello, {name}!")
+first_number = float(input("Enter the 1st number: "))
+second_number = float(input("Enter the 2nd number: "))
+
+result = 0
+
+if operator == "+":
+    result = first_number + second_number
+elif operator == "-":
+    result = first_number - second_number
+elif operator == "*":
+    result = first_number * second_number
+elif operator == "/":
+    result = first_number / second_number
 else:
-    print("You did not enter your name!")
+    print(f"{operator} is not a valid operator")
 
-age = int(input("Enter your age: "))
-
-if age > 100:
-    print("You are too old to sign up!")
-elif age >= 18:
-    print("You are signed up!")
-elif age < 0:
-    print("You haven't been born yet!")
-else:
-    print("You must be 18+ to sign up!")
-
-response = input("Would you like food? (Y/N): ").upper()
-
-if response == "Y":
-    print("Have some food!")
-else:
-    print("No food for you!")
+print(f"Result = {round(result, 2)}")
