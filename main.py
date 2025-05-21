@@ -1,33 +1,71 @@
-# Exercise: Rock, Paper, Scissors Game
+# Exercise: Dice Roller Program
 
 import random
 
-options = ("rock", "paper", "scissors")
-playing = True
+# print("\u25CF \u250C \u2500 \u2510 \u2502 \u2514 \u2518")
+# ● ┌ ─ ┐ │ └ ┘
 
-while playing:
+dice_art = {
+    1: (
+        "┌─────────┐",
+        "│         │",
+        "│    ●    │",
+        "│         │",
+        "└─────────┘"
+    ),
+    2: (
+        "┌─────────┐",
+        "│  ●      │",
+        "│         │",
+        "│      ●  │",
+        "└─────────┘"
+    ),
+    3: (
+        "┌─────────┐",
+        "│  ●      │",
+        "│    ●    │",
+        "│      ●  │",
+        "└─────────┘"
+    ),
+    4: (
+        "┌─────────┐",
+        "│  ●   ●  │",
+        "│         │",
+        "│  ●   ●  │",
+        "└─────────┘"
+    ),
+    5: (
+        "┌─────────┐",
+        "│  ●   ●  │",
+        "│    ●    │",
+        "│  ●   ●  │",
+        "└─────────┘"
+    ),
+    6: (
+        "┌─────────┐",
+        "│  ●   ●  │",
+        "│  ●   ●  │",
+        "│  ●   ●  │",
+        "└─────────┘"
+    )
+}
 
-    player = None
-    computer = random.choice(options)
+dice = []
+total = 0
+num_of_dice = int(input("How many dice?: "))
 
-    while player not in options:
-        player = input("Enter a choice (rock, paper, scissors): ").lower()
+for die in range(num_of_dice):
+    dice.append(random.randint(1, 6))
 
-    print("Player: " + player)
-    print(f"Computer: {computer}")
+for die in range(num_of_dice):
+    for line in dice_art.get(dice[die]):
+        print(line)
 
-    if player == computer:
-        print("It's a tie!")
-    elif player == "rock" and computer == "scissors":
-        print("You win!")
-    elif player == "paper" and computer == "rock":
-        print("You win!")
-    elif player == "scissors" and computer == "paper":
-        print("You win!")
-    else:
-        print("You lose!")
+for line in range(5):
+    for die in dice:
+        print(dice_art.get(die)[line], end="")
+    print()
 
-    if not input("Play again? (Y/N): ").upper() == "Y":
-        playing = False
-
-print("Thanks for playing!")
+for die in dice:
+    total += die
+print(f"Total: {total}")
