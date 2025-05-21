@@ -1,54 +1,35 @@
-# Exercise: Quiz Game
+# Dictionary = a collection of {key:value} pairs
+# Ordered and changeable. NO duplicate keys
 
-questions = ("What is the capital of France?",
-             "Which language is used to build web apps?",
-             "What does CPU stand for?",
-             "Who developed Python?")
+capitals = {
+    "USA": "Washington D.C.",
+    "India": "New Delhi",
+    "China": "Beijing",
+    "Russia": "Moscow"
+}
 
-options = (
-    ("A. Berlin", "B. Madrid", "C. Paris", "D. Rome"),
-    ("A. Python", "B. C", "C. Java", "D. All of above"),
-    ("A. Central Plug Unit", "B. Control Power Unit", "C. Central Processing Unit", "D. Compute Program Unit"),
-    ("A. James Gosling", "B. Guido van Rossum", "C. Dennis Ritchie", "D. Tim Berners-Lee")
-)
+print(capitals.get("China"))
+print(capitals.get("Japan"))
 
-answers = ("C", "D", "C", "B")
+capitals.update({"Germany": "Berlin"})
+capitals.update({"USA": "New York"})
 
-guesses = []
-score = 0
-question_num = 0
+print(capitals)
 
-for question in questions:
-    print("--------------------")
-    print(question)
+keys = capitals.keys()
+print(keys)
+for key in keys:
+    print(f"{key}: {capitals.get(key)}")
 
-    for option in options[question_num]:
-        print(option)
+values = capitals.values()
+print(values)
 
-    guess = input("Choose (A, B, C, D): ").upper()
-    guesses.append(guess)
+items = capitals.items()
+print(items)
+for key, value in items:
+    print(f"{key} - {value}")
 
-    if guess == answers[question_num]:
-        score += 1
-        print("CORRECT!")
-    else:
-        print(f"INCORRECT! {answers[question_num]} is the correct answer!")
+capitals.pop("China")
+capitals.popitem()
 
-    question_num += 1
-
-print("--------------------")
-
-print("Answers: ", end="")
-for answer in answers:
-    print(answer, end=" ")
-print()
-
-print("Guesses: ", end="")
-for guess in guesses:
-    print(guess, end=" ")
-print()
-
-score = int(score / len(questions) * 100)
-print(f"Your score is: {score}%")
-
-print("--------------------")
+print(capitals)
