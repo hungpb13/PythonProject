@@ -1,16 +1,23 @@
-# Keyword argument = an argument preceded by an identifier
-# Help with readability
-# Order of keyword arguments doesn't matter
-# Argument: Positional --> Default --> KEYWORD --> Arbitrary
+# *args = pass multiple positional arguments ()
+# **kwargs = pass multiple keyword arguments {key:value}
+# * = unpacking operator
+# Argument: Positional --> Default --> Keyword --> ARBITRARY
 
-def hello(greeting, title, first, last):
-    return f"{greeting} {title}{first} {last}"
+def add(*args):
+    print(type(args))
+    total = 0
+    for num in args:
+        total += num
+    return total
 
 
-print(hello(greeting="Hi", title="Mr.", last="Bro", first="Code"))
+print(add(1, 2, 3, 4))
 
-def get_phone(country, area, first, last):
-    return f"{country}-{area}-{first}-{last}"
 
-phone_number = get_phone(country=1, area=123, first=456, last=7890)
-print(phone_number)
+def print_address(**kwargs):
+    print(type(kwargs))
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
+
+
+print_address(street="123 Fake St.", city="Detroit", state="MI", zip="54321")
