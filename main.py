@@ -1,35 +1,25 @@
-# Exercise: Concession Stand Program
+# Random Numbers
 
-menu = {
-    "pizza": 3.00,
-    "nachos": 4.50,
-    "popcorn": 6.00,
-    "fries": 2.50,
-    "chips": 1.00,
-    "pretzel": 3.50,
-    "soda": 3.00,
-    "lemonade": 4.25
-}
+import random
 
-cart = []
-total = 0
+low = 1
+high = 100
 
-print("----------- MENU ----------")
-for key, value in menu.items():
-    print(f"{key:20} ${value:.2f}")
-print("---------------------------")
+int_num = random.randint(low, high)
+print(int_num)
 
-while True:
-    food = input("Select and item (press Q to quit): ").lower()
-    if food.upper() == "Q":
-        break
-    elif menu.get(food) is not None:
-        cart.append(food)
+# Random float number from 0 --> 1
+float_num = random.random()
+print(float_num)
 
-print("----------- ORDER ----------")
-for food in cart:
-    value = menu.get(food)
-    total += value
-    print(f"{food:22} ${value:.2f}")
-print("----------------------------")
-print(f"{"Total":22} ${total:.2f}")
+# Random float number from 1 --> 5
+float_num = random.uniform(1, 5)
+print(float_num)
+
+options = ("rock", "paper", "scissors")
+option = random.choice(options)
+print(option)
+
+cards = ["2", "3", "4", "5", "6", "7", "8", "9", "J", "Q", "K", "A"]
+random.shuffle(cards)
+print(cards)
