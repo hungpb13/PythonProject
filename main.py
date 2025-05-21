@@ -1,19 +1,35 @@
-# List comprehension = a concise way to create a list
-# Compact and easier to read than traditional loops
-# [expression for value in iterable if condition]
+# Match-case statement = an alternative to using many elif statements
+# Execute a block of code if value match a case
+# Clearer and more readable syntax
 
-doubles = [i * 2 for i in range(1, 11)]
+def day_of_week(day):
+    match day:
+        case 1:
+            return "Sunday"
+        case 2:
+            return "Monday"
+        case 3:
+            return "Tuesday"
+        case 4:
+            return "Wednesday"
+        case 5:
+            return "Thursday"
+        case 6:
+            return "Friday"
+        case 7:
+            return "Saturday"
+        case _:
+            return "Invalid day"
 
-# for i in range(1, 11):
-#     doubles.append(i * 2)
 
-print(doubles)
+def is_weekend(day):
+    match day:
+        case "Sunday" | "Saturday":
+            return True
+        case "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday":
+            return False
+        case _:
+            return False
 
-numbers = [i for i in range(1, 101)]
-print(numbers)
 
-even_numbers = [i for i in numbers if i % 2 == 0]
-odd_numbers = [num for num in numbers if num % 2 != 0]
-
-print(even_numbers)
-print(odd_numbers)
+print(f"Is {day_of_week(1)} weekend? {is_weekend(day_of_week(1))}")
