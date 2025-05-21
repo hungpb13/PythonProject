@@ -1,19 +1,9 @@
-# Collection = single "variable" used to store multiple values
-#   List    = [] ordered and changeable. Duplicates OK
-#   Set     = {} unordered and immutable, but Add/Remove OK. NO duplicates
-#   Tuple   = () ordered and unchangeable. Duplicates OK. FASTER
+# Set Operations
 
-fruits = ("apple", "banana", "orange", "coconut", "apple")
+a = {1, 2, 3}
+b = {3, 4, 5}
 
-print(f"Fruits = {fruits}")
-
-print(f"Length = {len(fruits)}")
-print(f"Is apple in fruits?: {"apple" in fruits}")
-
-for fruit in fruits:
-    print(fruit)
-
-print(f"Index of apple: {fruits.index("apple")}")
-print(f"Count of apple: {fruits.count("apple")}")
-
-print(fruits)
+print(a | b)   # Union → {1, 2, 3, 4, 5}
+print(a & b)   # Intersection → {3}
+print(a - b)   # Difference → {1, 2}
+print(a ^ b)   # Symmetric Difference → {1, 2, 4, 5}
