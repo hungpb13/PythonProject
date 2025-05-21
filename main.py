@@ -1,17 +1,12 @@
-# Exercise: Countdown Timer
+# Nested loops = a loop within another loop
+# outer loop:
+#   inner loop:
 
-import time
+rows = int(input("Enter the number of rows: "))
+columns = int(input("Enter the number of columns: "))
+symbol = input("Enter the symbol to use: ")
 
-for i in reversed(range(1, 6)):
-    print(i)
-
-my_time = int(input("Enter the time in seconds: "))
-
-for i in range(my_time, 0, -1):
-    seconds = i % 60
-    minutes = int(i / 60) % 60
-    hours = int(i / 3600)
-    print(f"{hours:02}:{minutes:02}:{seconds:02}")
-    time.sleep(1)
-
-print("TIME'S UP!")
+for i in range(rows):
+    for j in range(columns):
+        print(symbol, end=" ")
+    print()
