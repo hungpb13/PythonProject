@@ -1,25 +1,35 @@
-# Random Numbers
+# Exercise: Number Guessing Game
 
 import random
 
-low = 1
-high = 100
+lowest_num = 1
+highest_num = 100
+answer = random.randint(lowest_num, highest_num)
+guess = 0
+num_of_guesses = 0
+is_running = True
 
-int_num = random.randint(low, high)
-print(int_num)
+print("Number Guessing Game")
+print(f"Select a number between {lowest_num} and {highest_num}")
 
-# Random float number from 0 --> 1
-float_num = random.random()
-print(float_num)
+while is_running:
+    guess = input("Enter your guess: ")
 
-# Random float number from 1 --> 5
-float_num = random.uniform(1, 5)
-print(float_num)
+    if guess.isdigit():
+        guess = int(guess)
+        num_of_guesses += 1
 
-options = ("rock", "paper", "scissors")
-option = random.choice(options)
-print(option)
-
-cards = ["2", "3", "4", "5", "6", "7", "8", "9", "J", "Q", "K", "A"]
-random.shuffle(cards)
-print(cards)
+        if guess < lowest_num or guess > highest_num:
+            print(f"{guess} is out of range!")
+            print(f"Please select a number between {lowest_num} and {highest_num}")
+        elif guess < answer:
+            print("Too low! Try again!")
+        elif guess > answer:
+            print("Too high! Try again!")
+        else:
+            print(f"CORRECT! The answer is {answer}")
+            print(f"Number of guesses: {num_of_guesses}")
+            is_running = False
+    else:
+        print("Invalid guess!")
+        print(f"Please select a number between {lowest_num} and {highest_num}")
