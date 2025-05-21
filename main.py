@@ -1,35 +1,35 @@
-# Dictionary = a collection of {key:value} pairs
-# Ordered and changeable. NO duplicate keys
+# Exercise: Concession Stand Program
 
-capitals = {
-    "USA": "Washington D.C.",
-    "India": "New Delhi",
-    "China": "Beijing",
-    "Russia": "Moscow"
+menu = {
+    "pizza": 3.00,
+    "nachos": 4.50,
+    "popcorn": 6.00,
+    "fries": 2.50,
+    "chips": 1.00,
+    "pretzel": 3.50,
+    "soda": 3.00,
+    "lemonade": 4.25
 }
 
-print(capitals.get("China"))
-print(capitals.get("Japan"))
+cart = []
+total = 0
 
-capitals.update({"Germany": "Berlin"})
-capitals.update({"USA": "New York"})
+print("----------- MENU ----------")
+for key, value in menu.items():
+    print(f"{key:20} ${value:.2f}")
+print("---------------------------")
 
-print(capitals)
+while True:
+    food = input("Select and item (press Q to quit): ").lower()
+    if food.upper() == "Q":
+        break
+    elif menu.get(food) is not None:
+        cart.append(food)
 
-keys = capitals.keys()
-print(keys)
-for key in keys:
-    print(f"{key}: {capitals.get(key)}")
-
-values = capitals.values()
-print(values)
-
-items = capitals.items()
-print(items)
-for key, value in items:
-    print(f"{key} - {value}")
-
-capitals.pop("China")
-capitals.popitem()
-
-print(capitals)
+print("----------- ORDER ----------")
+for food in cart:
+    value = menu.get(food)
+    total += value
+    print(f"{food:22} ${value:.2f}")
+print("----------------------------")
+print(f"{"Total":22} ${total:.2f}")
