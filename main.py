@@ -1,25 +1,16 @@
-# Default argument = a default value for certain parameter
-# Default is used when that argument is omitted
-# Make function more flexible, reduce number of arguments
-# Argument: Positional --> DEFAULT --> Keyword --> Arbitrary
+# Keyword argument = an argument preceded by an identifier
+# Help with readability
+# Order of keyword arguments doesn't matter
+# Argument: Positional --> Default --> KEYWORD --> Arbitrary
 
-import time
-
-
-def net_price(list_price, discount=0, tax=0.05):
-    return list_price * (1 - discount) * (1 + tax)
+def hello(greeting, title, first, last):
+    return f"{greeting} {title}{first} {last}"
 
 
-print(net_price(500))
-print(net_price(500, 0.1))
-print(net_price(500, 0.1, 0))
+print(hello(greeting="Hi", title="Mr.", last="Bro", first="Code"))
 
+def get_phone(country, area, first, last):
+    return f"{country}-{area}-{first}-{last}"
 
-def count(end, start=1):
-    for i in range(start, end + 1):
-        print(i)
-        time.sleep(1)
-    print("Time's up!")
-
-
-count(20, 15)
+phone_number = get_phone(country=1, area=123, first=456, last=7890)
+print(phone_number)
