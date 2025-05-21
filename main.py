@@ -1,34 +1,25 @@
-# Return = statement used to end a function and send a result back to the caller
+# Default argument = a default value for certain parameter
+# Default is used when that argument is omitted
+# Make function more flexible, reduce number of arguments
+# Argument: Positional --> DEFAULT --> Keyword --> Arbitrary
 
-def add(a, b):
-    return a + b
-
-
-def subtract(a, b):
-    return a - b
+import time
 
 
-def multiply(a, b):
-    return a * b
+def net_price(list_price, discount=0, tax=0.05):
+    return list_price * (1 - discount) * (1 + tax)
 
 
-def divide(a, b):
-    return a / b
+print(net_price(500))
+print(net_price(500, 0.1))
+print(net_price(500, 0.1, 0))
 
 
-a, b = 1, 2
-
-print(add(a, b))
-print(subtract(a, b))
-print(multiply(a, b))
-print(divide(a, b))
-
-
-def create_name(first_name, last_name):
-    first_name = first_name.capitalize();
-    last_name = last_name.capitalize();
-    return first_name + " " + last_name
+def count(end, start=1):
+    for i in range(start, end + 1):
+        print(i)
+        time.sleep(1)
+    print("Time's up!")
 
 
-full_name = create_name("bro", "code")
-print(full_name)
+count(20, 15)
