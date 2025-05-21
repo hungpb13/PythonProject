@@ -1,16 +1,13 @@
-# 2D list =  a list where each element is another list
+# Exercise: Print Numpad
 
-fruits = ["apple", "banana", "coconut"]
-vegetables = ["celery", "potatoes", "carrots"]
-meats = ["beef", "chicken", "pork"]
+num_pad = (
+    (1, 2, 3),
+    (4, 5, 6),
+    (7, 8, 9),
+    ("*", 0, "#")
+)
 
-groceries = [fruits, vegetables, meats]
-
-print(groceries)
-print(groceries[0])
-print(groceries[0][1])
-
-for foods in groceries:
-    for food in foods:
-        print(food, end=" ")
+for row in num_pad:
+    for num in row:
+        print(num, end=" ")
     print()
