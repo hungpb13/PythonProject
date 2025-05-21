@@ -1,9 +1,25 @@
-# Set Operations
+# Exercise: Shopping Cart Program
 
-a = {1, 2, 3}
-b = {3, 4, 5}
+foods = []
+prices = []
+total = 0
 
-print(a | b)   # Union → {1, 2, 3, 4, 5}
-print(a & b)   # Intersection → {3}
-print(a - b)   # Difference → {1, 2}
-print(a ^ b)   # Symmetric Difference → {1, 2, 4, 5}
+while True:
+    food = input("Enter a food to buy (press Q to quit): ")
+    if food.upper() == "Q":
+        break
+    else:
+        price = float(input(f"Enter the price of a {food}: $"))
+        foods.append(food)
+        prices.append(price)
+
+print("---- YOUR CART ----")
+
+for i in range(len(foods)):
+    print(f"{foods[i]}\t\t\t${prices[i]}")
+
+print("-------------------")
+
+for price in prices:
+    total += price
+print(f"Your total is: ${total:.2f}")
