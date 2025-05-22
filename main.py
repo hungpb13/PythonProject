@@ -1,22 +1,44 @@
-# Module = a file containing code that you want to include in your programs
-# Use 'import' to include a module (built-in or your own)
-# Useful to break up a large program reusable separate files
+# Variable scope = where a variable is visible and accessible
+# Scope resolution = (LEGB) Local --> Enclosed --> Global --> Built-in
 
-# print(help("modules"))
-# print(help("math"))
-
-# import math
-# import math as m
+# Built-in
 from math import pi
 
-# print(math.pi)
-# print(m.pi)
-print(pi)
+# Global
+global_var = "This is from global"
 
-import example
 
-print(example.pi)
-print(example.square(3))
-print(example.cube(3))
-print(example.circumference(3))
-print(example.area(3))
+# Local
+def function_a():
+    a = 1  # Local
+    print(a)
+    print(global_var)
+    print(pi)
+
+
+def function_b():
+    b = 2  # Local
+    print(b)
+    # print(a) --> cannot access variable 'a'
+    print(global_var)
+    pi = 3.14 # Local
+    print(pi)
+
+
+function_a()
+function_b()
+
+
+# Enclosed
+def outer_function():
+    x = "This is from outer"  # Enclosed when used in inner_function()
+
+    def inner_function():
+        x = "This is from inner"  # Local
+        print(x)
+
+    print(x)
+    inner_function()
+
+
+outer_function()
