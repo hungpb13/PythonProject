@@ -1,46 +1,86 @@
-# Exercise: Encryption Program
-
+# Exercise: Hangman Game
 import random
-import string
+from wordslist import words
 
-chars = " " + string.punctuation + string.digits + string.ascii_letters
-chars = list(chars)
-keys = chars.copy()
-random.shuffle(keys)
+hangman_art = {
+    0: ("   ",
+        "   ",
+        "   "),
+    1: (" o ",
+        "   ",
+        "   "),
+    2: (" o ",
+        " | ",
+        "   "),
+    3: (" o ",
+        "/| ",
+        "   "),
+    4: (" o ",
+        "/|\\",
+        "   "),
+    5: (" o ",
+        "/|\\",
+        "/  "),
+    6: (" o ",
+        "/|\\",
+        "/ \\")
+}
 
-print(f"chars: {chars}")
-print(f"keys : {keys}")
+
+def display_hangman(wrong_guesses):
+    for line in hangman_art[wrong_guesses]:
+        print(line)
 
 
-# Encrypt
-def encrypt():
-    plain_text = input("Enter a message to encrypt: ")
-    cipher_text = ""
-
-    for letter in plain_text:
-        index = chars.index(letter)
-        cipher_text += keys[index]
-
-    print(f"Original: {plain_text}")
-    print(f"Encrypt : {cipher_text}")
+def display_hint(hint):
+    print(" ".join(hint))
 
 
-# Decrypt
-def decrypt():
-    cipher_text = input("Enter a message to decrypt: ")
-    plain_text = ""
-
-    for letter in cipher_text:
-        index = keys.index(letter)
-        plain_text += chars[index]
-
-    print(f"Encrypt : {cipher_text}")
-    print(f"Original: {plain_text}")
+def display_answer(answer):
+    print(" ".join(answer))
 
 
 def main():
-    encrypt()
-    decrypt()
+    answer = random.choice(words);
+    hint = ["_"] * len(answer)
+    wrong_guesses = 0
+    guessed_letters = set()
+    is_running = True
+
+    print("Hangman Word Guessing Game")
+
+    while is_running:
+        display_hangman(wrong_guesses)
+        display_hint(hint)
+
+        guess = input("Enter a letter: ").lower()
+
+        if len(guess) != 1 or not guess.isalpha():
+            print("Invalid input!")
+            continue
+
+        if guess in guessed_letters:
+            print(f"{guess} is already guessed!")
+
+        guessed_letters.add(guess)
+
+        if guess in answer:
+            for i in range(len(answer)):
+                if answer[i] == guess:
+                    hint[i] = guess
+        else:
+            wrong_guesses += 1
+
+        if "_" not in hint:
+            display_hangman(wrong_guesses)
+            display_answer(answer)
+            print("You win!")
+            is_running = False
+        elif wrong_guesses >= len(hangman_art) - 1:
+            display_hangman(wrong_guesses)
+            display_answer(answer)
+            print("You lose!")
+            is_running = False
 
 
 if __name__ == "__main__":
