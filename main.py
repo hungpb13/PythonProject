@@ -1,35 +1,22 @@
-# Match-case statement = an alternative to using many elif statements
-# Execute a block of code if value match a case
-# Clearer and more readable syntax
+# Module = a file containing code that you want to include in your programs
+# Use 'import' to include a module (built-in or your own)
+# Useful to break up a large program reusable separate files
 
-def day_of_week(day):
-    match day:
-        case 1:
-            return "Sunday"
-        case 2:
-            return "Monday"
-        case 3:
-            return "Tuesday"
-        case 4:
-            return "Wednesday"
-        case 5:
-            return "Thursday"
-        case 6:
-            return "Friday"
-        case 7:
-            return "Saturday"
-        case _:
-            return "Invalid day"
+# print(help("modules"))
+# print(help("math"))
 
+# import math
+# import math as m
+from math import pi
 
-def is_weekend(day):
-    match day:
-        case "Sunday" | "Saturday":
-            return True
-        case "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday":
-            return False
-        case _:
-            return False
+# print(math.pi)
+# print(m.pi)
+print(pi)
 
+import example
 
-print(f"Is {day_of_week(1)} weekend? {is_weekend(day_of_week(1))}")
+print(example.pi)
+print(example.square(3))
+print(example.cube(3))
+print(example.circumference(3))
+print(example.area(3))
