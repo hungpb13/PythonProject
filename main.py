@@ -1,43 +1,58 @@
-# Inheritance = allows a class (child) inherit attributes and methods from another class (parent)
-# Help with code reusability and extendability
-# class Child(Parent):
+# Multiple inheritance = a child class inherits from more than one parent class
+# class C(A, B):
+# Multilevel inheritance = a child class inherits from a parent which inherits from a grandparent class
+# class C(B): <-- class B(A): <-- class A:
 
-# Parent Class
+# Grandparent Class
 class Animal:
     def __init__(self, name):
         self.name = name
-        self.is_alive = True
 
     def eat(self):
         print(f"{self.name} is eating...")
 
     def sleep(self):
-        print(f"{self.name} is asleep...")
+        print(f"{self.name} is sleeping...")
+
+
+# Parent Class
+class Prey(Animal):
+    def flee(self):
+        print(f"{self.name} is fleeing...")
+
+
+class Predator(Animal):
+    def hunt(self):
+        print(f"{self.name} is hunting...")
 
 
 # Child Class
-class Dog(Animal):
-    def speak(self):
-        print("WOOF!")
+class Rabbit(Prey):
+    pass
 
 
-class Cat(Animal):
-    def speak(self):
-        print("MEOW!")
+class Hawk(Predator):
+    pass
 
 
-# Create Objects
-dog = Dog("Scoopy")
-cat = Cat("Garfield")
+# Multiple inheritance
+class Fish(Prey, Predator):
+    pass
 
-print(dog.name)
-print(dog.is_alive)
-dog.eat()
-dog.sleep()
-dog.speak()
 
-print(cat.name)
-print(cat.is_alive)
-cat.eat()
-cat.sleep()
-cat.speak()
+rabbit = Rabbit("Bugs")
+hawk = Hawk("Tony")
+fish = Fish("Nemo")
+
+rabbit.flee()
+rabbit.eat()
+rabbit.sleep()
+
+hawk.hunt()
+hawk.eat()
+hawk.sleep()
+
+fish.flee()
+fish.hunt()
+fish.eat()
+fish.sleep()
