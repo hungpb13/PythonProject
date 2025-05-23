@@ -1,30 +1,33 @@
-# Object = a "bundle" of related attributes (variables) and methods (functions)
-# Class = a blueprint used to design the structure and layout of an Object
-# A Class --> create many Objects
+# Class variable = shared among all instances of a class
+# Defined outside the constructor __init__(self)
 
-from car import Car
+class Student:
+    # Class variable
+    class_year = 2025
+    num_students = 0
 
-# Create Object
-car_one = Car("Mustang", 2025, "red", True)
-car_two = Car("Corvette", 1999, "blue", False)
-car_three = Car("Charger", 2016, "yellow", True)
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        Student.num_students += 1
 
-# <__main__.Car object at 0x000002753AF5D2B0> --> memory address
-print(car_one)
 
-# Dot . operator --> to access attributes and methods
+alice = Student("Alice", 20)
+bob = Student("Bob", 30)
 
-# Attributes
-print(car_one.model)
-print(car_one.year)
-print(car_one.color)
-print(car_one.for_sale)
+print(f"Class year: {Student.class_year}")
 
-# Methods
-car_one.drive()
-car_two.drive()
-car_three.drive()
+print(alice.name)
+print(alice.age)
+print(alice.class_year)
 
-car_one.stop()
-car_two.stop()
-car_three.stop()
+print(bob.name)
+print(bob.age)
+print(bob.class_year)
+
+print(f"Num of students: {Student.num_students}")
+
+charles = Student("Charles", 25)
+daniel = Student("Daniel", 35)
+
+print(f"My graduating class of {Student.class_year} has {Student.num_students} students.")
