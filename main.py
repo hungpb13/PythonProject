@@ -1,49 +1,35 @@
-# Polymorphism = Greek word that means to "have many forms or faces"
-# Poly = many
-# Morphe = form
-# Inheritance -> override methods in child classes
+# Duck typing = another way to achieve polymorphism beside Inheritance
+# Object must have the minimum necessary attributes/methods
+# "If it looks like a duck and quack like a duck, then it must be a duck"
 
-from abc import ABC, abstractmethod
-
-
-class Shape(ABC):
-    @abstractmethod
-    def area(self):
-        pass
+class Animal:
+    alive = True
 
 
-class Circle(Shape):
-    def __init__(self, radius):
-        self.radius = radius
-
-    def area(self):
-        return 3.14 * self.radius ** 2
+class Duck(Animal):
+    def speak(self):
+        print("QUACK!")
 
 
-class Square(Shape):
-    def __init__(self, width):
-        self.width = width
-
-    def area(self):
-        return self.width ** 2
+class Dog(Animal):
+    def speak(self):
+        print("WOOF!")
 
 
-class Rectangle(Shape):
-    def __init__(self, width, length):
-        self.width = width
-        self.length = length
-
-    def area(self):
-        return self.width * self.length
+class Cat(Animal):
+    def speak(self):
+        print("MEOW!")
 
 
-class Pizza(Circle):
-    def __init__(self, topping, radius):
-        super().__init__(radius)
-        self.topping = topping
+class Car:
+    alive = False
+
+    def speak(self):
+        print("HONK!")
 
 
-shapes = [Circle(radius=5), Square(width=5), Rectangle(width=5, length=10), Pizza("pepperoni", 10)]
+animals = [Duck(), Dog(), Cat(), Car()]
 
-for shape in shapes:
-    print(f"Area: {shape.area()}cm²")
+for animal in animals:
+    print(f"Alive: {animal.alive}")
+    animal.speak()
