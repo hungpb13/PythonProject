@@ -1,41 +1,41 @@
-# Nested class = a class defined within another class
+# Static method = a method that belongs to a class rather than any object from that class (instance)
+# Usually used for general utility functions that do not need access to class data
 
-# class Outer:
-#   class Inner:
-# Benefits:
-# 1. Logically group classes that are closely related
-# 2. Encapsulate private details that aren't relevant outside the outer class
-# 3. Keep namespace clean --> reduce the possibility of naming conflicts
+class Employee:
+    def __init__(self, name, position):
+        self.name = name
+        self.position = position
 
-class Company:
-    class Employee:
-        def __init__(self, name, position):
-            self.name = name
-            self.position = position
+    def get_info(self):
+        return f"{self.name} - {self.position}"
 
-        def get_details(self):
-            return f"{self.name} - {self.position}"
-
-    def __init__(self, company_name):
-        self.company_name = company_name
-        self.employees = []
-
-    def add_employee(self, name, position):
-        new_employee = self.Employee(name, position)
-        self.employees.append(new_employee)
-
-    def list_employees(self):
-        return [employee.get_details()
-                for employee in self.employees]
+    @staticmethod
+    def is_valid_position(position):
+        valid_positions = ("Manager", "Cook", "Cashier", "Staff")
+        return position in valid_positions
 
 
-company = Company("KFC")
-company.add_employee("Alice", "Manager")
-company.add_employee("Bob", "Cook")
-company.add_employee("Charles", "Cashier")
+def main():
+    employees = []
 
-print(company.company_name)
-print(company.list_employees())
+    while True:
+        name = input("Enter employee name: ").capitalize()
+        position = input("Enter position: ").capitalize()
 
-for employee in company.list_employees():
-    print(employee)
+        if Employee.is_valid_position(position):
+            employee = Employee(name, position)
+            employees.append(employee)
+        else:
+            print("Invalid position!")
+            continue
+
+        print("List of employees:")
+        for employee in employees:
+            print(employee.get_info())
+
+        if input("Add more employees? (press Q to quit) ").upper() == "Q":
+            break
+
+
+if __name__ == "__main__":
+    main()
