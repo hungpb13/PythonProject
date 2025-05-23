@@ -1,17 +1,15 @@
-# filter(function, collection) = return all elements that pass a condition
+# reduce(function, collection) = reduce elements in a collection to a single value
+# For loop is better in most cases
+# Reduce is better for a functional approach + readability
 
-def is_passing(grade):
-    return grade >= 50
-
+from functools import reduce
 
 grades = [63, 45, 23, 85, 99, 74, 56, 88]
 
-# pass_grades = filter(is_passing, grades)
+add = lambda x, y: x + y
 
-# Lambda
-pass_grades = list(filter(lambda grade: grade >= 50, grades))
+total_grade = reduce(add, grades)
 
-print(grades)
+average_grade = total_grade / len(grades)
 
-for grade in pass_grades:
-    print(grade)
+print(f"Average grade = {average_grade:.2f}")
