@@ -1,41 +1,39 @@
-# Static method = a method that belongs to a class rather than any object from that class (instance)
-# Usually used for general utility functions that do not need access to class data
+# Class method = allows operations related to the Class itself
+# @classmethod
+# def method_name(cls):
+# cls --> first parameter represents the class itself
 
-class Employee:
-    def __init__(self, name, position):
+class Student:
+    count = 0
+    total_gpa = 0
+
+    def __init__(self, name, gpa):
         self.name = name
-        self.position = position
+        self.gpa = gpa
+        Student.count += 1
+        Student.total_gpa += gpa
 
+    # Instance method
     def get_info(self):
-        return f"{self.name} - {self.position}"
+        return f"{self.name} - {self.gpa}"
 
-    @staticmethod
-    def is_valid_position(position):
-        valid_positions = ("Manager", "Cook", "Cashier", "Staff")
-        return position in valid_positions
+    # Class method
+    @classmethod
+    def get_count(cls):
+        return f"Total number of students = {cls.count}"
 
-
-def main():
-    employees = []
-
-    while True:
-        name = input("Enter employee name: ").capitalize()
-        position = input("Enter position: ").capitalize()
-
-        if Employee.is_valid_position(position):
-            employee = Employee(name, position)
-            employees.append(employee)
+    @classmethod
+    def get_average_gpa(cls):
+        if cls.count == 0:
+            return 0
         else:
-            print("Invalid position!")
-            continue
-
-        print("List of employees:")
-        for employee in employees:
-            print(employee.get_info())
-
-        if input("Add more employees? (press Q to quit) ").upper() == "Q":
-            break
+            average_gpa = cls.total_gpa / cls.count
+            return f"Average GPA = {average_gpa:.2f}"
 
 
-if __name__ == "__main__":
-    main()
+alice = Student("Alice", 3.4)
+bob = Student("Bob", 2.3)
+charles = Student("Charles", 3.2)
+
+print(Student.get_count())
+print(Student.get_average_gpa())
