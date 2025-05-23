@@ -1,87 +1,30 @@
-# Exercise: Hangman Game
-import random
-from wordslist import words
+# Object = a "bundle" of related attributes (variables) and methods (functions)
+# Class = a blueprint used to design the structure and layout of an Object
+# A Class --> create many Objects
 
-hangman_art = {
-    0: ("   ",
-        "   ",
-        "   "),
-    1: (" o ",
-        "   ",
-        "   "),
-    2: (" o ",
-        " | ",
-        "   "),
-    3: (" o ",
-        "/| ",
-        "   "),
-    4: (" o ",
-        "/|\\",
-        "   "),
-    5: (" o ",
-        "/|\\",
-        "/  "),
-    6: (" o ",
-        "/|\\",
-        "/ \\")
-}
+from car import Car
 
+# Create Object
+car_one = Car("Mustang", 2025, "red", True)
+car_two = Car("Corvette", 1999, "blue", False)
+car_three = Car("Charger", 2016, "yellow", True)
 
-def display_hangman(wrong_guesses):
-    for line in hangman_art[wrong_guesses]:
-        print(line)
+# <__main__.Car object at 0x000002753AF5D2B0> --> memory address
+print(car_one)
 
+# Dot . operator --> to access attributes and methods
 
-def display_hint(hint):
-    print(" ".join(hint))
+# Attributes
+print(car_one.model)
+print(car_one.year)
+print(car_one.color)
+print(car_one.for_sale)
 
+# Methods
+car_one.drive()
+car_two.drive()
+car_three.drive()
 
-def display_answer(answer):
-    print(" ".join(answer))
-
-
-def main():
-    answer = random.choice(words);
-    hint = ["_"] * len(answer)
-    wrong_guesses = 0
-    guessed_letters = set()
-    is_running = True
-
-    print("Hangman Word Guessing Game")
-
-    while is_running:
-        display_hangman(wrong_guesses)
-        display_hint(hint)
-
-        guess = input("Enter a letter: ").lower()
-
-        if len(guess) != 1 or not guess.isalpha():
-            print("Invalid input!")
-            continue
-
-        if guess in guessed_letters:
-            print(f"{guess} is already guessed!")
-
-        guessed_letters.add(guess)
-
-        if guess in answer:
-            for i in range(len(answer)):
-                if answer[i] == guess:
-                    hint[i] = guess
-        else:
-            wrong_guesses += 1
-
-        if "_" not in hint:
-            display_hangman(wrong_guesses)
-            display_answer(answer)
-            print("You win!")
-            is_running = False
-        elif wrong_guesses >= len(hangman_art) - 1:
-            display_hangman(wrong_guesses)
-            display_answer(answer)
-            print("You lose!")
-            is_running = False
-
-
-if __name__ == "__main__":
-    main()
+car_one.stop()
+car_two.stop()
+car_three.stop()
