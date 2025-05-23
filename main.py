@@ -1,24 +1,27 @@
-# Recursion = a function calls itself from within
-# Help with visualize a complex problem into basic steps which can be solved more easily iteratively or recursively
+# Exercise: Find the Factorial of a Number
+# n! = n x (n-1) x (n-2) x ... x 1
 
 # Iterative
-def walk_i(steps):
-    for step in range(1, steps + 1):
-        print(f"You walk {step} steps")
+def factorial_i(num):
+    result = 1
+    if num > 0:
+        for i in range(1, num + 1):
+            result *= i
+        return result
+    return result
+
+
+print(factorial_i(2))
 
 
 # Recursive
-def walk(steps):
+def factorial(num):
     # Base case
-    if steps == 0:
-        return
+    if num == 1 or num <= 0:
+        return 1
 
     # Recursive call
-    walk(steps - 1)
-
-    print(f"You take step #{steps}")
+    return num * factorial(num - 1)
 
 
-walk_i(5)
-walk(5)
-
+print(factorial_i(5))
