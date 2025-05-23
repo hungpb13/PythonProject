@@ -1,15 +1,17 @@
-# map(function, collection) = apply a given function to all items in a collection
+# filter(function, collection) = return all elements that pass a condition
 
-def c_to_f(temp):
-    return (temp * 9 / 5) + 32
+def is_passing(grade):
+    return grade >= 50
 
 
-celsius_temps = [0.0, 10.0, 20.0, 30.0, 35.0, 40.0]
+grades = [63, 45, 23, 85, 99, 74, 56, 88]
 
-# fahrenheit_temps = list(map(c_to_f, celsius_temps))
+# pass_grades = filter(is_passing, grades)
 
 # Lambda
-fahrenheit_temps = list(map(lambda temp: (temp * 9 / 5) + 32, celsius_temps))
+pass_grades = list(filter(lambda grade: grade >= 50, grades))
 
-print(celsius_temps)
-print(fahrenheit_temps)
+print(grades)
+
+for grade in pass_grades:
+    print(grade)
