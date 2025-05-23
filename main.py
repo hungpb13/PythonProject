@@ -1,74 +1,60 @@
-# Multiple inheritance = a child class inherits from more than one parent class
-# class C(A, B):
-# Multilevel inheritance = a child class inherits from a parent which inherits from a grandparent class
-# class C(B): <-- class B(A): <-- class A:
+# Abstract class = a class that cannot be instantiated
+# Meant to be subclassed (inherit by anoar class)
+# Benefits:
+# 1. Prevents instantiation of a class itself
+# 2. Requires children to use inherited abstract methods
 
-# Method Resolution Order (MRO) is the order in which Python looks for a method or attribute 
-# when multiple classes are involved — especially in multiple inheritance.
-# Python uses the C3 linearization algorithm to determine the MRO.
-
-# Grandparent Class
-class Animal:
-    def __init__(self, name):
-        self.name = name
-
-    def eat(self):
-        print(f"{self.name} is eating...")
-
-    def sleep(self):
-        print(f"{self.name} is sleeping...")
-
-    def speak(self):
-        print(f"{self.name} is speaking...")
+from abc import ABC, abstractmethod
 
 
-# Parent Class
-class Predator(Animal):
-    def hunt(self):
-        print(f"{self.name} is hunting...")
+# Abstract Class
+class Vehicle(ABC):
 
-    def speak(self):
-        print(f"{self.name} is mmmm...")
+    def __init__(self, brand, model, color, year):
+        self.brand = brand
+        self.model = model
+        self.color = color
+        self.year = year
 
+    def describe(self):
+        return f"{self.year} {self.color} {self.brand} {self.model}"
 
-class Prey(Animal):
-    def flee(self):
-        print(f"{self.name} is fleeing...")
+    @abstractmethod
+    def go(self):
+        pass
 
-    def speak(self):
-        print(f"{self.name} is zzzz...")
-
-
-# Child Class
-class Rabbit(Prey):
-    pass
-
-
-class Hawk(Predator):
-    pass
+    @abstractmethod
+    def stop(self):
+        pass
 
 
-# Multiple inheritance
-# Method Resolution Order (MRO) = Fish < Prey < Predator < Animal
-class Fish(Prey, Predator):
-    pass
+# Error: Can't instantiate abstract class Vehicle without an implementation for abstract methods 'go', 'stop'
+# car = Vehicle()
+
+# Implemented by a subclass
+class Car(Vehicle):
+    def go(self):
+        print(f"You drive a {self.describe()}")
+
+    def stop(self):
+        print(f"You stop a {self.describe()}")
 
 
-rabbit = Rabbit("Bugs")
-hawk = Hawk("Tony")
-fish = Fish("Nemo")
+class Motorcycle(Vehicle):
 
-rabbit.flee()
-rabbit.eat()
-rabbit.sleep()
+    def go(self):
+        print(f"You ride a {self.describe()}")
 
-hawk.hunt()
-hawk.eat()
-hawk.sleep()
+    def stop(self):
+        print(f"You stop a {self.describe()}")
 
-fish.flee()
-fish.hunt()
-fish.eat()
-fish.sleep()
-fish.speak()
-print(Fish.mro())
+
+car = Car("BMW", "i7", "blue", 2019)
+car.go()
+car.stop()
+print(f"This is a {car.describe()}")
+
+motorcycle = Motorcycle("Honda", "Air Blade", "black", 2024)
+motorcycle.go()
+motorcycle.stop()
+print(f"This is a {motorcycle.describe()}")
