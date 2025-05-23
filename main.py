@@ -1,39 +1,57 @@
-# Class method = allows operations related to the Class itself
-# @classmethod
-# def method_name(cls):
-# cls --> first parameter represents the class itself
+# Magic method = dunder method (double underscore) __init__, __str__, __eq__
+# Automatically called by many of Python's built-in operations
+# Allow dev to define or customize the behavior of objects
 
-class Student:
-    count = 0
-    total_gpa = 0
+class Book:
+    def __init__(self, title, author, num_pages):
+        self.title = title
+        self.author = author
+        self.num_pages = num_pages
 
-    def __init__(self, name, gpa):
-        self.name = name
-        self.gpa = gpa
-        Student.count += 1
-        Student.total_gpa += gpa
+    def __str__(self):
+        return f"{self.title} by {self.author}"
 
-    # Instance method
-    def get_info(self):
-        return f"{self.name} - {self.gpa}"
+    def __eq__(self, other):
+        return self.title == other.title and self.author == other.author
 
-    # Class method
-    @classmethod
-    def get_count(cls):
-        return f"Total number of students = {cls.count}"
+    def __lt__(self, other):
+        return self.num_pages < other.num_pages
 
-    @classmethod
-    def get_average_gpa(cls):
-        if cls.count == 0:
-            return 0
+    def __gt__(self, other):
+        return self.num_pages > other.num_pages
+
+    def __add__(self, other):
+        return self.num_pages + other.num_pages
+
+    def __contains__(self, keyword):
+        return keyword in self.title or keyword in self.author
+
+    def __getitem__(self, key):
+        if key == "title":
+            return self.title
+        elif key == "author":
+            return self.author
+        elif key == "num_pages":
+            return self.num_pages
         else:
-            average_gpa = cls.total_gpa / cls.count
-            return f"Average GPA = {average_gpa:.2f}"
+            return f"Key {key} was not found"
 
 
-alice = Student("Alice", 3.4)
-bob = Student("Bob", 2.3)
-charles = Student("Charles", 3.2)
+book_one = Book("The Lords of the Ring", "J.R.R Tolkien", 1000)
+book_two = Book("Harry Potter", "J.K. Rowling", 800)
+book_three = Book("The Lords of the Ring", "J.R.R Tolkien", 900)
 
-print(Student.get_count())
-print(Student.get_average_gpa())
+print(book_one)
+print(book_two)
+
+print(book_one == book_three)
+print(book_two < book_one)
+print(book_two > book_one)
+
+print(f"Total pages = {book_one + book_two}")
+
+print("Ring" in book_three)
+print("Rowling" in book_two)
+
+print(book_one['num_pages'])
+print(book_one['audio'])
