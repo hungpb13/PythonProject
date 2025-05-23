@@ -1,56 +1,26 @@
-# @property = decorator used to define a method as a property
-# Benefit: Add additional logic when read, write, or delete attributes
-# getter, setter, deleter methods
+# Decorator = a function that extends the behavior of another function without modifying the base function
+# Pass the base function as an argument to the decorator
 
-class Rectangle:
-    def __init__(self, width, height):
-        self._width = width
-        self._height = height
+def add_sprinkles(func):
+    def wrapper(*args, **kwargs):
+        print("You add sprinkles 🎊")
+        func(*args, **kwargs)
 
-    @property
-    def width(self):
-        return f"{self._width:.1f}cm"
-
-    @property
-    def height(self):
-        return f"{self._height:.1f}cm"
-
-    @width.setter
-    def width(self, new_width):
-        if new_width > 0:
-            self._width = new_width
-        else:
-            print("Width must be greater than 0")
-
-    @height.setter
-    def height(self, new_height):
-        if new_height > 0:
-            self._height = new_height
-        else:
-            print("Height must be greater than 0")
-
-    @width.deleter
-    def width(self):
-        del self._width
-        print("Width has been deleted")
-
-    @height.deleter
-    def height(self):
-        del self._height
-        print("Height has been deleted")
+    return wrapper
 
 
-rectangle = Rectangle(10, 20)
+def add_fudge(func):
+    def wrapper(*args, **kwargs):
+        print("You add fudge 🍫")
+        func(*args, **kwargs)
 
-# Access to a protected member _attribute of a class
-# print(f"Width = {rectangle._width}")
-# print(f"Height = {rectangle._height}")
+    return wrapper
 
-rectangle.width = 5
-rectangle.height = 10
 
-print(f"Width = {rectangle.width}")
-print(f"Height = {rectangle.height}")
+@add_sprinkles
+@add_fudge
+def get_ice_cream(flavor):
+    print(f"Here's your {flavor} ice cream 🍦")
 
-del rectangle.width
-del rectangle.height
+
+get_ice_cream("chocolate")
