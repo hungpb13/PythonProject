@@ -1,33 +1,43 @@
-# Class variable = shared among all instances of a class
-# Defined outside the constructor __init__(self)
+# Inheritance = allows a class (child) inherit attributes and methods from another class (parent)
+# Help with code reusability and extendability
+# class Child(Parent):
 
-class Student:
-    # Class variable
-    class_year = 2025
-    num_students = 0
-
-    def __init__(self, name, age):
+# Parent Class
+class Animal:
+    def __init__(self, name):
         self.name = name
-        self.age = age
-        Student.num_students += 1
+        self.is_alive = True
+
+    def eat(self):
+        print(f"{self.name} is eating...")
+
+    def sleep(self):
+        print(f"{self.name} is asleep...")
 
 
-alice = Student("Alice", 20)
-bob = Student("Bob", 30)
+# Child Class
+class Dog(Animal):
+    def speak(self):
+        print("WOOF!")
 
-print(f"Class year: {Student.class_year}")
 
-print(alice.name)
-print(alice.age)
-print(alice.class_year)
+class Cat(Animal):
+    def speak(self):
+        print("MEOW!")
 
-print(bob.name)
-print(bob.age)
-print(bob.class_year)
 
-print(f"Num of students: {Student.num_students}")
+# Create Objects
+dog = Dog("Scoopy")
+cat = Cat("Garfield")
 
-charles = Student("Charles", 25)
-daniel = Student("Daniel", 35)
+print(dog.name)
+print(dog.is_alive)
+dog.eat()
+dog.sleep()
+dog.speak()
 
-print(f"My graduating class of {Student.class_year} has {Student.num_students} students.")
+print(cat.name)
+print(cat.is_alive)
+cat.eat()
+cat.sleep()
+cat.speak()
