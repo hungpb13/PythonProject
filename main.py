@@ -1,60 +1,48 @@
-# Abstract class = a class that cannot be instantiated
-# Meant to be subclassed (inherit by anoar class)
-# Benefits:
-# 1. Prevents instantiation of a class itself
-# 2. Requires children to use inherited abstract methods
-
-from abc import ABC, abstractmethod
+# super() = function used in a child to call methods from a parent class (super class)
+# Extend the functionality of the inherited methods
 
 
-# Abstract Class
-class Vehicle(ABC):
-
-    def __init__(self, brand, model, color, year):
-        self.brand = brand
-        self.model = model
+class Shape:
+    def __init__(self, color, is_filled):
         self.color = color
-        self.year = year
+        self.is_filled = is_filled
 
     def describe(self):
-        return f"{self.year} {self.color} {self.brand} {self.model}"
-
-    @abstractmethod
-    def go(self):
-        pass
-
-    @abstractmethod
-    def stop(self):
-        pass
+        return f"{self.color} and {'filled' if self.is_filled else 'not filled'}"
 
 
-# Error: Can't instantiate abstract class Vehicle without an implementation for abstract methods 'go', 'stop'
-# car = Vehicle()
+class Circle(Shape):
+    def __init__(self, color, is_filled, radius):
+        super().__init__(color, is_filled)
+        self.radius = radius
 
-# Implemented by a subclass
-class Car(Vehicle):
-    def go(self):
-        print(f"You drive a {self.describe()}")
-
-    def stop(self):
-        print(f"You stop a {self.describe()}")
+    def describe(self):
+        return f"It is a {super().describe()} circle with an area of {3.14 * pow(self.radius, 2)}cm^2"
 
 
-class Motorcycle(Vehicle):
+class Square(Shape):
+    def __init__(self, color, is_filled, width):
+        super().__init__(color, is_filled)
+        self.width = width
 
-    def go(self):
-        print(f"You ride a {self.describe()}")
-
-    def stop(self):
-        print(f"You stop a {self.describe()}")
+    def describe(self):
+        return f"It is a {super().describe()} square with an area of {pow(self.width, 2)}cm^2"
 
 
-car = Car("BMW", "i7", "blue", 2019)
-car.go()
-car.stop()
-print(f"This is a {car.describe()}")
+class Rectangle(Shape):
+    def __init__(self, color, is_filled, width, length):
+        super().__init__(color, is_filled)
+        self.width = width
+        self.length = length
 
-motorcycle = Motorcycle("Honda", "Air Blade", "black", 2024)
-motorcycle.go()
-motorcycle.stop()
-print(f"This is a {motorcycle.describe()}")
+    def describe(self):
+        return f"It is a {super().describe()} rectangle with an area of {self.width * self.length}cm^2"
+
+
+circle = Circle(color="red", is_filled=True, radius=5)
+square = Square(color="blue", is_filled=False, width=10)
+rectangle = Rectangle(color="yellow", is_filled=True, width=10, length=20)
+
+print(circle.describe())
+print(square.describe())
+print(rectangle.describe())
