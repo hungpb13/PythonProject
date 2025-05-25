@@ -12,4 +12,4 @@ except ZeroDivisionError:
 except Exception: # Too broad exception clause
     print("Something went wrong!")
 finally:
-    print("Goodbye!")
+    print("Thanks! Have a nice day!")
