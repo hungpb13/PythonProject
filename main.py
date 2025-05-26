@@ -1,61 +1,27 @@
-# Read files (.txt, .json, .csv)
-import csv
-import json
+# Calc Execution Time
 
-txt_file = "resources/input.txt"
+import time
 
-try:
-    with open(txt_file, "r") as file:
-        content = file.read()
-        print(content)
-except FileNotFoundError:
-    print("File not found")
-except PermissionError:
-    print("Do not have permission to read")
 
-# JSON file
-json_file = "resources/input.json"
+def calc_execution_time(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.perf_counter()
 
-try:
-    with open(json_file, "r") as file:
-        content = json.load(file)
-        print(content)
+        func(*args, **kwargs)
 
-        # Content = dict
-        # print(content["name"])
-        # for key, value in content.items():
-        #     print(f"{key}: {value}")
+        end_time = time.perf_counter()
 
-        # Content = list
-        for item in content:
-            print(item)
-            for key, value in item.items():
-                print(f"{key}: {value}")
+        elapsed_time = end_time - start_time
+        print(f"Execution time = {elapsed_time:.1f} seconds")
 
-except FileNotFoundError:
-    print("File not found")
-except PermissionError:
-    print("Do not have permission to read")
-except json.decoder.JSONDecodeError:
-    print("Invalid JSON format")
+    return wrapper
 
-# CSV file
-csv_file = "resources/input.csv"
 
-try:
-    with open(csv_file, "r") as file:
-        # reader = csv.reader(file)
-        # print(reader)
+@calc_execution_time
+def function(greet, name, times=1):
+    # Block of code
+    for i in range(times):
+        print(f"{greet}, {name}!")
 
-        reader = csv.DictReader(file)
-        fieldnames = reader.fieldnames
-        print(fieldnames)
-        for row in reader:
-            for i in range(len(fieldnames)):
-                fieldname = fieldnames[i]
-                print(f"{fieldname}: {row[fieldname]}", end=" ")
-            print()
-except FileNotFoundError:
-    print("File not found")
-except PermissionError:
-    print("Do not have permission to read")
+
+function("Hello", "Alice", 10)
