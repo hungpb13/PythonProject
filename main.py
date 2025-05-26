@@ -1,44 +1,47 @@
-# Exercise: Alarm Clock
+# Multithreading = run multiple threads (tasks) at the same time in a single process
+
+import threading
 import time
-import datetime
-
-import pygame
 
 
-def set_alarm(alarm_time):
-    print(f"Alarm set for {alarm_time}")
-    sound_file = "resources/my_music.mp3"
-    is_running = True
+def walk_dog(dog_name):
+    time.sleep(4)
+    print(f"You walk {dog_name}")
 
-    while is_running:
-        current_time = datetime.datetime.now().strftime("%H:%M:%S")
-        print(current_time)
 
-        if current_time == alarm_time:
-            print("WAKE UP! ⏰")
+def take_out_trash():
+    time.sleep(2)
+    print("You take out the trash")
 
-            pygame.mixer.init()
-            pygame.mixer.music.load(sound_file)
-            pygame.mixer.music.play()
-            is_busy = pygame.mixer.music.get_busy()
 
-            while is_busy:
-                time.sleep(1)
-                stop = input("Press to stop")
-                if stop is not None:
-                    pygame.mixer.music.stop()
-                    break
-
-            is_running = False
-
-        time.sleep(1)
-
-    print("Have a nice day!")
+def get_mail():
+    time.sleep(3)
+    print("You get the mail")
 
 
 def main():
-    alarm_time = input("Enter alarm time (HH:MM:SS): ")
-    set_alarm(alarm_time)
+    # Single thread --> main thread: walk_dog > tak_out_trask > get_mail
+    # Run all tasks one by one
+    # walk_dog("Scooby")
+    # take_out_trash()
+    # get_mail()
+
+    # Multithreading
+    task_one = threading.Thread(target=walk_dog, args=("Scooby",))
+    task_one.start()
+
+    task_two = threading.Thread(target=take_out_trash)
+    task_two.start()
+
+    task_three = threading.Thread(target=get_mail)
+    task_three.start()
+
+    # Wait for all tasks to finish
+    task_one.join()
+    task_two.join()
+    task_three.join()
+
+    print("All tasks completed")
 
 
 if __name__ == "__main__":
