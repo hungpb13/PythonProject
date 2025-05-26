@@ -1,47 +1,36 @@
-# Multithreading = run multiple threads (tasks) at the same time in a single process
+# Requests = connect to an API
 
-import threading
-import time
+import requests
 
-
-def walk_dog(dog_name):
-    time.sleep(4)
-    print(f"You walk {dog_name}")
+base_url = "https://pokeapi.co/api/v2/"
 
 
-def take_out_trash():
-    time.sleep(2)
-    print("You take out the trash")
+def get_pokemon_info(name):
+    url = f"{base_url}/pokemon/{name}"
+    response = requests.get(url)
 
-
-def get_mail():
-    time.sleep(3)
-    print("You get the mail")
+    if response.status_code == 200:
+        pokemon_data = response.json()
+        return pokemon_data
+    else:
+        print(f"Failed to retrieve data: {response.status_code}")
+        return None
 
 
 def main():
-    # Single thread --> main thread: walk_dog > tak_out_trask > get_mail
-    # Run all tasks one by one
-    # walk_dog("Scooby")
-    # take_out_trash()
-    # get_mail()
+    pokemon_name = "charizard"
+    pokemon_info = get_pokemon_info(name=pokemon_name)
 
-    # Multithreading
-    task_one = threading.Thread(target=walk_dog, args=("Scooby",))
-    task_one.start()
+    if pokemon_info:
+        print(f"ID: {pokemon_info['id']}")
+        print(f"Name: {pokemon_info['name'].capitalize()}")
+        print(f"Height: {pokemon_info['height']}")
+        print(f"Weight: {pokemon_info['weight']}")
 
-    task_two = threading.Thread(target=take_out_trash)
-    task_two.start()
+        types = pokemon_info['types']
+        types = [type['type'].get('name') for type in types]
 
-    task_three = threading.Thread(target=get_mail)
-    task_three.start()
-
-    # Wait for all tasks to finish
-    task_one.join()
-    task_two.join()
-    task_three.join()
-
-    print("All tasks completed")
+        print(f"Types: {types}")
 
 
 if __name__ == "__main__":
