@@ -1,15 +1,19 @@
-# Exception = an event that interrupts the flow of a program
-# TypeError, ValueError, ZeroDivisionError
-# try --> except --> finally
+# File detection = checking if a file exists, what type it is (file or folder)
 
-try:
-    number = int(input("Enter a number: "))
-    print(1 / number)
-except ValueError:
-    print("Enter only number, please!")
-except ZeroDivisionError:
-    print("You cannot divide by zero!")
-except Exception: # Too broad exception clause
-    print("Something went wrong!")
-finally:
-    print("Thanks! Have a nice day!")
+import os
+
+relative_file_path = "resources/"
+absolute_file_path = "C:/Users/Hungpb/PycharmProjects/PythonProject/resources/text.pdf"
+
+if os.path.exists(relative_file_path):
+    print(f"The location '{relative_file_path}' exists")
+
+    if os.path.isfile(relative_file_path):
+        print("That is a file")
+    else:
+        print("That is a folder")
+else:
+    print(f"The location '{relative_file_path}' doesn't exist")
+
+existed = True if os.path.exists(absolute_file_path) else False
+print(f"Is '{absolute_file_path}' existed?: {existed}")
