@@ -1,27 +1,40 @@
-# Calc Execution Time
+# Date & Time
 
-import time
+import datetime
 
+date = datetime.date(2025, 1, 1)
+print(f"Date: {date}")
 
-def calc_execution_time(func):
-    def wrapper(*args, **kwargs):
-        start_time = time.perf_counter()
+today = date.today()
+print(f"Today: {today}")
 
-        func(*args, **kwargs)
+time = datetime.time(12, 30, 30)
+print(f"Time: {time}")
 
-        end_time = time.perf_counter()
+now = datetime.datetime.now()
 
-        elapsed_time = end_time - start_time
-        print(f"Execution time = {elapsed_time:.1f} seconds")
+# Format datetime
+pattern = "%H:%M:%S %d/%m/%Y"
+now = now.strftime(pattern)
 
-    return wrapper
+print(f"Now: {now}")
 
+target_datetime = datetime.datetime(2020, 1, 1, 12, 0, 0)
+current_datetime = datetime.datetime.now()
 
-@calc_execution_time
-def function(greet, name, times=1):
-    # Block of code
-    for i in range(times):
-        print(f"{greet}, {name}!")
+if target_datetime < current_datetime:
+    print("Target date has passed")
+else:
+    print("Target date has NOT passed")
 
+# Parse String to Date
+date_str = "26-05-2025"
+parsed_date = datetime.datetime.strptime(date_str, "%d-%m-%Y")
+print(f"Parsed date: {parsed_date.strftime(pattern)}")
 
-function("Hello", "Alice", 10)
+# Doing Date Arithmetic (Timedelta)
+tomorrow = datetime.datetime.now() + datetime.timedelta(days=1)
+print(f"Tomorrow: {tomorrow}")
+
+yesterday = datetime.datetime.now() - datetime.timedelta(days=1)
+print(f"Yesterday: {yesterday.strftime(pattern)}")
