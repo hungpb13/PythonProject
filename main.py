@@ -1,19 +1,65 @@
-# File detection = checking if a file exists, what type it is (file or folder)
+# Writing files (.txt, .json, .csv)
+import csv
+import json
 
-import os
+txt_data = "I like pizza!\n"
 
-relative_file_path = "resources/"
-absolute_file_path = "C:/Users/Hungpb/PycharmProjects/PythonProject/resources/text.pdf"
+students = ["Alice", "Bob", "Charles", "Dutch"]
 
-if os.path.exists(relative_file_path):
-    print(f"The location '{relative_file_path}' exists")
+txt_file = "resources/output.txt"
 
-    if os.path.isfile(relative_file_path):
-        print("That is a file")
-    else:
-        print("That is a folder")
-else:
-    print(f"The location '{relative_file_path}' doesn't exist")
+# Mode
+# w = overite
+# a = append
+# x = exclusive creation (try except FileExistsError)
+# r = read (default)
+try:
+    # with statement = automatic file closing
+    with open(file=txt_file, mode="w") as file:
+        file.write(txt_data)
 
-existed = True if os.path.exists(absolute_file_path) else False
-print(f"Is '{absolute_file_path}' existed?: {existed}")
+        # Write a list
+        file.write("Students: ")
+        for student in students:
+            file.write(student + " ")
+        print(f"Text file {txt_file} was created")
+except FileExistsError:
+    print("That file already exists")
+
+# Write JSON file
+student = {
+    "name": "Alice",
+    "age": 20,
+    "email": "alice@gmail.com",
+    "gpa": 3.5
+}
+
+json_file = "resources/output.json"
+
+try:
+    with open(json_file, "w") as file:
+        json.dump(student, file, indent=4)
+        print(f"JSON file '{json_file}' was created")
+except FileExistsError:
+    print("That file already exists")
+
+# Write CSV file
+data = [
+    ["Name", "Age", "Email"],  # Header row
+    ["Alice", 25, "alice@example.com"],
+    ["Bob", 30, "bob@example.com"],
+    ["Charlie", 28, "charlie@example.com"]
+]
+
+csv_file = "resources/output.csv"
+
+try:
+    with open(csv_file, "w", newline="") as file:
+        writer = csv.writer(file)
+
+        for row in data:
+            writer.writerow(row)
+
+        print(f"CSV file '{csv_file}' was created")
+except FileExistsError:
+    print("That file already exists")
