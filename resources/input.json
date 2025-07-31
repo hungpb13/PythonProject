@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Alice",
+    "age": 20,
+    "email": "alice@gmail.com",
+    "gpa": 3.5
+  },
+  {
+    "name": "Bob",
+    "age": 24,
+    "email": "bob@gmail.com",
+    "gpa": 2.6
+  }
+]
